@@ -36,8 +36,8 @@ i hope in the future, I will also to become a person who is  proficient in multi
 """
 
 commit: 
-git config --global user.email "email@example.com"
-git config --global user.name "Ben Doherty"
+git config --global user.email "xiaocan0119@gmail.com"
+git config --global user.name "XiaocanLin"
 
 to check work using code:
 python3 ../course/set1/tests.py 
