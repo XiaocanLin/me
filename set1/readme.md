@@ -1,5 +1,4 @@
-TODO: Reflect on what you learned this week and what is still unclear.
-""" 
+"""
 set up my working(study) environment
 
 04 / 06 / 2021 friday
