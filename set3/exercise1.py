@@ -12,15 +12,22 @@ def loop_ranger(start, stop=None, step=1):
     The look up the docs for range(), you can answer this with just the range 
     function, but we'd like you to do it the long way, probably using a loop.
     """
-    return None
-
+    
+    loop_ranger1 =[]
+    for i in range(start,stop,step):
+        loop_ranger1.append(i)
+    return loop_ranger1
 
 def lone_ranger(start, stop, step):
     """Duplicate the functionality of range.
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    return None
+
+    lone_ranger1 =[]
+    for i in range(start,stop,step):
+        lone_ranger1.append(i)
+    return lone_ranger1
 
 
 def two_step_ranger(start, stop):
@@ -29,7 +36,10 @@ def two_step_ranger(start, stop):
     Sometimes you want to hide complexity.
     Make a range function that always has a step size of 2
     """
-    return None
+    two_step_ranger1 =[]
+    for i in range(start,stop,2):
+        two_step_ranger1.append(i)
+    return two_step_ranger1
 
 
 def stubborn_asker(low, high):
@@ -40,7 +50,20 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    return None
+    print("input a numebr are between ", low,"and", high)
+
+    while True:
+        number = input("the number are : ")
+        number = int(number)
+
+        if low < number < high:
+            print("True,", number,"are between",low ,"and",high)
+            return number
+            break
+        
+        else:
+            print("False,", number,"are not between",low ,"and",high)
+            print("Try again")
 
 
 def not_number_rejector(message):
@@ -50,7 +73,17 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    return None
+
+    while True:
+        message = input("input a number : ")
+        try:
+            message = float(message)
+            print("True")
+            return message
+            break
+        except Exception as e:
+            print("False, plese input a number")
+            print("Try again")
 
 
 def super_asker(low, high):
@@ -61,7 +94,22 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    return None
+    while True:
+        print("input a numebr are between ", low,"and", high)
+        message = input("number : ")
+        try:
+            message = int(message)
+            if low < message < high:
+                print("True,", message,"are between",low ,"and",high)
+                return message
+                break
+            else:
+                print("False,", message,"are not between",low ,"and",high)
+                print("Try again")
+                continue
+        except Exception as e:
+            print("False, plese input a number")
+            print("Try again")
 
 
 if __name__ == "__main__":
