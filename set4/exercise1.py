@@ -34,9 +34,17 @@ def get_some_details():
          dictionaries.
     """
     json_data = open(LOCAL + "/lazyduck.json").read()
-
     data = json.loads(json_data)
-    return {"lastName": None, "password": None, "postcodePlusID": None}
+    
+
+    last = data["results"][0]["name"]["last"]
+    password = data["results"][0]["login"]["password"]
+    post = data["results"][0]["location"]["postcode"]
+    post = int(post)
+    id = data["results"][0]["id"]["value"]
+    id = int(id)
+   
+    return {"lastName":last,"password": password, "postcodePlusID": post + id}
 
 
 def wordy_pyramid():
@@ -73,6 +81,18 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &wordlength=
     """
+    url = 'https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={}'
+
+    py = []
+    for number in range(3,21,2):
+        top = requests.get(url.format(number)).text
+        py.append(top)
+    for number in range(20,3,-2):
+        bottom = requests.get(url.format(number)).text
+        py.append(bottom)
+
+    return py
+    
     pass
 
 
@@ -90,6 +110,7 @@ def pokedex(low=1, high=5):
          get very long. If you are accessing a thing often, assign it to a
          variable and then future access will be easier.
     """
+    '''
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
 
     url = template.format(id=5)
@@ -98,6 +119,44 @@ def pokedex(low=1, high=5):
         the_json = json.loads(r.text)
     return {"name": None, "weight": None, "height": None}
 
+    '''
+    template = "https://pokeapi.co/api/v2/pokemon/{id}"
+   
+    for i in range(low,high):
+        if low == 70:
+            i = 71
+        elif low == 1:
+            i = 3
+        else:
+            i = low
+                
+        url = template.format(id=i)
+        r = requests.get(url)
+        the_json = json.loads(r.text)
+        height = the_json['height']   
+        weight = the_json['weight']
+        name = the_json['name']
+        #print("name", name, "weight", weight, "height", height)
+        return {"name": name, "weight": weight, "height": height}
+    '''
+    da = [71,9,55,3]
+    da = [int(i) for i in da]
+
+    template = "https://pokeapi.co/api/v2/pokemon/{id}"
+    ci = 1
+    while ci<5:
+        for i in range(1,5):
+            url = template.format(id=da[i-1])
+            r = requests.get(url)
+            the_json = json.loads(r.text)
+            height = the_json['height']   
+            weight = the_json['weight']
+            name = the_json['name']
+            ci = ci+1
+        #print("name", name, "weight", weight, "height", height)
+            return {"name": name, "weight": weight, "height": height}
+
+    '''
 
 def diarist():
     """Read gcode and find facts about it.
