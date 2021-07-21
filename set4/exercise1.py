@@ -121,6 +121,25 @@ def pokedex(low=1, high=5):
 
     '''
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
+    zidian = []
+    for i in range(low,high):
+        url = template.format(id=i)
+        r = requests.get(url)
+        the_json = json.loads(r.text)
+        
+        zidian.append(the_json)
+
+    tallest_hight = -1
+    tallest_poke = {}
+    for k in zidian:
+        if k['height'] > tallest_hight:
+            tallest_hight = k['height']
+            tallest_poke = k
+
+
+    return{"name": tallest_poke['name'], "weight": tallest_poke['weight'], "height": tallest_poke ['height']}
+    '''
+    template = "https://pokeapi.co/api/v2/pokemon/{id}"
    
     for i in range(low,high):
         if low == 70:
@@ -138,6 +157,7 @@ def pokedex(low=1, high=5):
         name = the_json['name']
         #print("name", name, "weight", weight, "height", height)
         return {"name": name, "weight": weight, "height": height}
+    '''
     '''
     da = [71,9,55,3]
     da = [int(i) for i in da]
