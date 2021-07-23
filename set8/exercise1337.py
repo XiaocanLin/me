@@ -233,9 +233,9 @@ def random_filler_text(number_of_words=200) -> str:
     my_dict = make_filler_text_dictionary()
     words = []
     for _ in range(number_of_words):
-        word_length = random.randint(3, 6)
-        word_index = random.randint(0, 2)
-        words.append(my_dict[word_length][word_index])
+        length = random.randint(3, 6)
+        location = random.randint(0, 2)
+        words.append(my_dict[length][location])
 
     return " ".join(words)
     
@@ -267,16 +267,16 @@ def fast_filler(number_of_words=200) -> str:
     words = []
 
     for i in range(number_of_words):
-        word_length = random.randint(3, 6)
-        word_index = random.randint(0, 2)
+        length = random.randint(3, 6)
+        location = random.randint(0, 2)
         try:
-            words.append(my_dict[word_length][word_index])
+            words.append(my_dict[length][location])
         except KeyError:
-            words.append(my_dict[str(word_length)][word_index])
+            words.append(my_dict[str(length)][location])
 
     paragraph = " ".join(words)
-    paragraph = paragraph[0].upper() + paragraph[1:]
-    return paragraph + "."
+    paragraph = paragraph[0].upper() + paragraph[1:] + '.'
+    return paragraph
 
 
     
